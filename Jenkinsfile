@@ -3,10 +3,10 @@ pipeline {
 
   stages {
 
-    stage('Build'){
+    stage('Verify Agent'){
       agent {
         docker {
-          image 'golang:1.22.5-alpine'
+          image 'go-agent'
           reuseNode true
         }
       }
@@ -18,6 +18,11 @@ pipeline {
           # Set GOCACHE to a directory with appropriate permissions
           export GOCACHE=/tmp/.cache
           mkdir -p /tmp/.cache
+
+          echo "------fin check go--------------"
+
+          kubectl version --client
+          echo "------fin kubectl verify--------"
 
           
         '''
