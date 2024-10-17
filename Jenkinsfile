@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment {
+    GOPATH = "/workspace/go"  // Set GOPATH to the same writable directory
+  }
+
   stages {
 
     stage('Verify Agent'){
