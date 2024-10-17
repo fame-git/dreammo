@@ -32,7 +32,7 @@ pipeline {
 
       steps {
         sh '''
-            go mod init
+            go mod tidy
         '''
 
       }
