@@ -1,7 +1,10 @@
 FROM ubuntu:latest
 
 # Update and install required packages
-RUN apt update -y && apt upgrade -y && apt install curl -y
+RUN apt update -y && apt upgrade -y && apt install curl -y && apt install golang-go -y
+
+# Check go version
+RUN go version
 
 # Download the latest stable release of kubectl from the official Kubernetes CDN
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
