@@ -94,6 +94,7 @@ pipeline {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push ${DOCKER_HUB_REPO}:${DOCKER_TAG}'
         }
+      }
     }
   }
 }
