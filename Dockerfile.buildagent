@@ -1,6 +1,5 @@
 FROM golang:1.22.5-alpine
 RUN apk update && apk upgrade
 RUN apk add curl
-RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-RUN sudo chmod +x kubectl
-RUN mv kubectl /usr/local/bin/
+RUN curl -LO https://github.com/kubernetes/kubernetes/releases/latest/download/kubectl-linux-amd64
+RUN chmod +x kubectl-linux-amd64
