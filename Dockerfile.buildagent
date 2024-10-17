@@ -1,7 +1,7 @@
-FROM golang:1.22.5-alpine
+FROM ubuntu:latest
 
 # Update and install required packages
-RUN apk update && apk upgrade && apk add curl
+RUN apt update && apt upgrade && apt add curl
 
 # Download the latest stable release of kubectl from the official Kubernetes CDN
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -12,7 +12,6 @@ RUN chmod +x kubectl
 # Move kubectl to /usr/local/bin
 RUN mkdir -p ~/.local/bin && mv ./kubectl ~/.local/bin/kubectl
 
-ENV PATH=$PATH:~/.local/bin
 
 # Verify kubectl installation
 RUN kubectl version --client
