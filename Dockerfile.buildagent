@@ -3,3 +3,4 @@ RUN apk update && apk upgrade
 RUN apk add curl
 RUN curl -LO https://github.com/kubernetes/kubernetes/releases/latest/download/kubectl-linux-amd64
 RUN chmod +x kubectl-linux-amd64
+RUN kubectl version
