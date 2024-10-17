@@ -18,6 +18,10 @@ ENV GOPATH=/go
 # Check go version
 RUN go version
 
+
+# Set working directory
+WORKDIR /workspace
+
 # Download the latest stable release of kubectl from the official Kubernetes CDN
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
