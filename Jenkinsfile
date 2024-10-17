@@ -36,7 +36,6 @@ pipeline {
 
       steps {
         sh '''
-            go mod tidy
             go mod download  
         '''
 
