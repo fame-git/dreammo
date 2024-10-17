@@ -13,10 +13,13 @@ pipeline {
 
       steps {
         sh '''
-          echo '------------On Build Stage---------------'
           go version
+
+          # Set GOCACHE to a directory with appropriate permissions
+          export GOCACHE=/tmp/.cache
+          mkdir -p /tmp/.cache
+          
           go run .
-          echo '------------First POC Fin----------------'
         '''
       }
     }
