@@ -32,7 +32,23 @@ pipeline {
 
       steps {
         sh '''
-            go mod tidy
+            go mod tidy        
+        '''
+
+      }
+    }
+
+    stage('Unit Test'){
+      agent {
+        docker {
+          image 'go-agent'
+          reuseNode true
+        }
+      }
+
+      steps {
+        sh '''
+            go test        
         '''
 
       }
