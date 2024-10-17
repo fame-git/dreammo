@@ -9,10 +9,8 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
 # Make it executable
 RUN chmod +x kubectl
 
-# Move kubectl to /usr/local/bin
-RUN mkdir -p ~/.local/bin && mv ./kubectl ~/.local/bin/kubectl
-
-ENV PATH=$PATH:~/.local/bin
+# Move kubectl to /usr/local/bin (system-wide directory in the PATH)
+RUN mv ./kubectl /usr/local/bin/kubectl
 
 # Verify kubectl installation
 RUN kubectl version --client
