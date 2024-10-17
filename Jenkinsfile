@@ -36,7 +36,8 @@ pipeline {
 
       steps {
         sh '''
-            go mod init  
+            go mod tidy
+            go mod download  
         '''
 
       }
@@ -53,6 +54,22 @@ pipeline {
       steps {
         sh '''
             go test        
+        '''
+
+      }
+    }
+
+    stage('Build GO'){
+      agent {
+        docker {
+          image 'go-agent'
+          reuseNode true
+        }
+      }
+
+      steps {
+        sh '''
+            go build -o myapp .     
         '''
 
       }
