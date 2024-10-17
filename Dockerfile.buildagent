@@ -3,11 +3,14 @@ FROM golang:1.22.5-alpine
 # Update and install required packages
 RUN apk update && apk upgrade && apk add curl
 
-# Download kubectl binary
-RUN curl -LO https://github.com/kubernetes/kubernetes/releases/latest/download/kubectl-linux-amd64
+# Download the latest stable release of kubectl from the official Kubernetes CDN
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
-# Make it executable and move it to /usr/local/bin as kubectl
-RUN chmod +x kubectl-linux-amd64 && mv kubectl-linux-amd64 /usr/local/bin/kubectl
+# Make it executable
+RUN chmod +x kubectl
+
+# Move kubectl to /usr/local/bin
+RUN mv kubectl /usr/local/bin/
 
 # Verify kubectl installation
 RUN kubectl version --client
