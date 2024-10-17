@@ -13,3 +13,13 @@ http://localhost:8000/hello/{name}
 http://localhost:8000/swagger/index.html
 
 ```
+
+## CI POC
+
+```sh
+# Pull image
+docker pull famedocker/go-back:{$ on build}
+
+# Run container
+docker run -d --name go-back -p 8000:8000 famedocker/go-back:{$ on build}
+```
