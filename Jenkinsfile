@@ -36,7 +36,9 @@ pipeline {
 
       steps {
         sh '''
-            go mod tidy        
+            go mod tidy
+
+            go mod init       
         '''
 
       }
