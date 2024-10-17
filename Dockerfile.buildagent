@@ -1,7 +1,19 @@
 FROM ubuntu:latest
 
+
+ENV GO_VERSION=1.22.5
+
 # Update and install required packages
-RUN apt update -y && apt upgrade -y && apt install curl -y && apt install golang-go -y
+RUN apt-get update -y && apt-get install -y curl git
+
+# Download and install Go
+RUN curl -LO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
+    rm go${GO_VERSION}.linux-amd64.tar.gz
+
+# Set up Go environment variables
+ENV PATH=$PATH:/usr/local/go/bin
+ENV GOPATH=/go
 
 # Check go version
 RUN go version
