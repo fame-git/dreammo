@@ -2,6 +2,8 @@ pipeline {
   agent any
 
   environment {
+    DOCKER_HUB_REPO = "famedocker/go-back"
+    DOCKER_TAG = "${BUILD_NUMBER}"  // Dynamic tag based on branch name and build number
     GOPATH = "/workspace/go"  // Set GOPATH to the same writable directory
   }
 
@@ -75,12 +77,6 @@ pipeline {
     }
 
     stage('Docker build'){
-      agent any
-
-      environment {
-        DOCKER_HUB_REPO = "famedocker/go-back"
-        DOCKER_TAG = "${BUILD_NUMBER}"  // Dynamic tag based on branch name and build number
-      }
 
       steps {
         sh 'docker build -t ${DOCKER_HUB_REPO}:${DOCKER_TAG} .'
