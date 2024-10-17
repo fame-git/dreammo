@@ -74,5 +74,18 @@ pipeline {
 
       }
     }
+
+    stage('Docker build'){
+      agent any
+
+      environment {
+        DOCKER_HUB_REPO = "famedocker/go-back"
+        DOCKER_TAG = "${BUILD_NUMBER}"  // Dynamic tag based on branch name and build number
+      }
+
+      steps {
+        sh 'docker build -t ${DOCKER_HUB_REPO}:${DOCKER_TAG} .'
+      }
+    }
   }
 }
