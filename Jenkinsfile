@@ -23,10 +23,28 @@ pipeline {
 
           kubectl version --client
           echo "------fin kubectl verify--------"
-
-          
         '''
       }
+    }
+
+    stage('Init build'){
+      agent {
+        docker {
+          image 'go-agent'
+          reuseNode true
+        }
+      }
+    }
+
+    steps {
+      sh '''
+          # Set GOCACHE to a directory with appropriate permissions
+          export GOCACHE=/tmp/.cache
+          mkdir -p /tmp/.cache
+          
+          go mod init
+      '''
+
     }
   }
 }
