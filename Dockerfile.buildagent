@@ -11,13 +11,16 @@ RUN curl -LO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
     rm go${GO_VERSION}.linux-amd64.tar.gz
 
+
 # Set up Go environment variables
 ENV PATH=$PATH:/usr/local/go/bin
-ENV GOPATH=/go
+ENV GOPATH=/workspace/go
 
-# Check go version
+# Create the workspace and grant permissions
+RUN mkdir -p /workspace/go && chmod -R 777 /workspace/go
+
+# Verify Go installation
 RUN go version
-
 
 # Set working directory
 WORKDIR /workspace
