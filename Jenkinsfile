@@ -18,8 +18,8 @@ pipeline {
           # Set GOCACHE to a directory with appropriate permissions
           export GOCACHE=/tmp/.cache
           mkdir -p /tmp/.cache
+
           
-          go run .
         '''
       }
     }
