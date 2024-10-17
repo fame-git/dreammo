@@ -12,6 +12,7 @@ RUN chmod +x kubectl
 # Move kubectl to /usr/local/bin
 RUN mkdir -p ~/.local/bin && mv ./kubectl ~/.local/bin/kubectl
 
+ENV PATH=$PATH:~/.local/bin
 
 # Verify kubectl installation
 RUN kubectl version --client
