@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+
+    stages {
+
+        stage('Build Custom Docker Agent') {
+          steps {
+            sh '''
+            docker build -t go-agent -f Dockerfile.buildagent .
+            '''
+          }
+        }
+    }
+}
