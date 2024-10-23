@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: goback-ingress
+  labels:
+    app.kubernetes.io/name: goback
+  annotations:
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "8"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "8"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "8"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /hello
+        pathType: Prefix
+        backend:
+          service:
+            name: goback-server
+            port:
+              number: 8000

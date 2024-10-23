@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-ingress-blue-deployment
+  labels:
+    app.kubernetes.io/name: goback
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: goback
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: goback
+    spec:
+      containers:
+      - name: devops-blue
+        image: famedocker/go-back:24
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 500M
+        ports:
+        - name:  http
+          containerPort: 8000
+          protocol: TCP
+  replicas: 1
